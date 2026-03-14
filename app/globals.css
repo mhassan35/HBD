@@ -1,0 +1,110 @@
+@import "tailwindcss";
+
+* {
+  box-sizing: border-box;
+}
+
+@keyframes floatDown {
+  0% {
+    transform: translateY(-40px) rotate(0deg);
+    opacity: 0;
+  }
+  8% { opacity: 1; }
+  92% { opacity: 0.7; }
+  100% {
+    transform: translateY(110vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+@keyframes balloonRise {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-130vh);
+    opacity: 0;
+  }
+}
+
+@keyframes sway {
+  0%, 100% { transform: rotate(-6deg) translateX(-4px); }
+  50% { transform: rotate(6deg) translateX(4px); }
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.15; }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes candleFlicker {
+  0%, 100% { transform: scaleY(1) scaleX(1); }
+  33% { transform: scaleY(1.25) scaleX(0.8); }
+  66% { transform: scaleY(0.85) scaleX(1.15); }
+}
+
+@keyframes bounceGentle {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes sparkleAnim {
+  0%, 100% { transform: scale(1) rotate(0deg); opacity: 1; }
+  50% { transform: scale(1.15) rotate(20deg); opacity: 0.75; }
+}
+
+.float-emoji {
+  position: absolute;
+  animation: floatDown linear infinite;
+  pointer-events: none;
+  user-select: none;
+}
+
+.balloon-anim {
+  animation: balloonRise linear forwards;
+}
+
+.sway-anim {
+  animation: sway 3s ease-in-out infinite;
+}
+
+.twinkle-anim {
+  animation: twinkle ease-in-out infinite;
+}
+
+.fade-in-up {
+  animation: fadeInUp 0.5s ease-out forwards;
+}
+
+.fade-in {
+  animation: fadeIn 0.4s ease-out forwards;
+}
+
+.candle-flame {
+  animation: candleFlicker 0.4s ease-in-out infinite;
+}
+
+.bounce-gentle {
+  animation: bounceGentle 2.5s ease-in-out infinite;
+}
+
+.sparkle-anim {
+  animation: sparkleAnim 2.5s ease-in-out infinite;
+}

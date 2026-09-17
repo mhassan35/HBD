@@ -6,9 +6,8 @@ import LandingScreen from './screens/LandingScreen';
 import CardFlowScreen from './screens/CardFlowScreen';
 import CelebrationScreen from './screens/CelebrationScreen';
 import MessageScreen from './screens/MessageScreen';
-import MemoriesScreen from './screens/MemoriesScreen';
 
-export type Screen = 'landing' | 'card-flow' | 'celebration' | 'message' | 'memories';
+export type Screen = 'landing' | 'card-flow' | 'celebration' | 'message';
 
 export default function Home() {
   const [screen, setScreen] = useState<Screen>('landing');
@@ -31,13 +30,7 @@ export default function Home() {
         />
       )}
       {screen === 'message' && (
-        <MessageScreen
-          onMemories={() => setScreen('memories')}
-          onBack={() => setScreen('celebration')}
-        />
-      )}
-      {screen === 'memories' && (
-        <MemoriesScreen onBack={() => setScreen('message')} />
+        <MessageScreen onBack={() => setScreen('celebration')} />
       )}
     </div>
   );

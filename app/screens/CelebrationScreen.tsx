@@ -1,6 +1,10 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Button from '../components/Button';
+import Confetti from '../components/Confetti';
+import FloatingEmojis from '../components/FloatingEmojis';
+import PageBackground from '../components/PageBackground';
 
 interface Props {
   onMessage: () => void;
@@ -40,7 +44,7 @@ function StringLights() {
         {LIGHT_COLORS.map((color, i) => (
           <div
             key={i}
-            className="w-3 h-3 sm:w-4 sm:h-4 rounded-full flex-shrink-0 twinkle-anim"
+            className="w-3 h-3 sm:w-4 sm:h-4 rounded-full shrink-0 twinkle-anim"
             style={{
               backgroundColor: color,
               boxShadow: `0 0 8px 3px ${color}`,
@@ -62,6 +66,7 @@ function Bunting() {
         {BUNTING_COLORS.map((color, i) => (
           <div
             key={i}
+            className="drop-shadow-sm"
             style={{
               width: 0,
               height: 0,
@@ -84,14 +89,15 @@ function HappyBirthdayText() {
       {text.split('').map((char, i) => (
         <span
           key={i}
-          className="text-white font-bold text-base sm:text-xl tracking-widest fade-in-up"
+          className="font-display text-white font-bold text-lg sm:text-2xl tracking-widest fade-in-up"
           style={{
             animationDelay: `${i * 0.06}s`,
             opacity: 0,
             animationFillMode: 'forwards',
+            textShadow: '0 2px 12px rgba(0,0,0,0.35)',
           }}
         >
-          {char === ' ' ? '\u00A0\u00A0' : char}
+          {char === ' ' ? '  ' : char}
         </span>
       ))}
     </div>
@@ -100,7 +106,7 @@ function HappyBirthdayText() {
 
 function BirthdayCake() {
   return (
-    <div className="flex flex-col items-center">
+    <div className="flex flex-col items-center drop-shadow-xl">
       {/* Candles */}
       <div className="flex gap-2.5 sm:gap-3 mb-1">
         {[0, 1, 2, 3, 4].map((i) => (
@@ -218,19 +224,20 @@ export default function CelebrationScreen({ onMessage, onPlayMusic }: Props) {
   const isDark = step >= 1;
 
   return (
-    <div
-      className={`min-h-screen relative flex flex-col items-center transition-colors duration-1000 ${
-        isDark ? 'bg-[#1a0028]' : 'bg-[#fce7f3]'
-      }`}
-    >
-      {isDark && <DarkParticles />}
+    <div className="min-h-screen relative flex flex-col items-center justify-center px-4 py-14 sm:py-20 fade-in">
+      <PageBackground dark={isDark} />
+      {isDark ? <DarkParticles /> : <FloatingEmojis />}
 
       {/* Header */}
-      <div className="pt-14 sm:pt-16 pb-3 text-center px-4 relative z-10">
-        <h1 className={`text-2xl sm:text-3xl md:text-4xl font-bold ${isDark ? 'text-pink-400' : 'text-pink-500'}`}>
+      <div className="pb-4 sm:pb-5 text-center relative z-10">
+        <h1
+          className={`font-display italic text-2xl sm:text-3xl md:text-4xl font-bold transition-colors duration-1000 ${
+            isDark ? 'text-pink-400' : 'text-pink-500'
+          }`}
+        >
           Let&apos;s Celebrate! 🎉
         </h1>
-        <p className={`text-xs sm:text-sm mt-1.5 ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>
+        <p className={`text-xs sm:text-sm mt-1.5 transition-colors duration-1000 ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>
           Click the buttons to decorate
         </p>
       </div>
@@ -238,36 +245,32 @@ export default function CelebrationScreen({ onMessage, onPlayMusic }: Props) {
       {/* Action button */}
       <div className="mb-4 sm:mb-6 relative z-10 px-4">
         {step === 0 && (
-          <button
-            onClick={() => setStep(1)}
-            className="bg-yellow-300 hover:bg-yellow-400 text-gray-800 font-semibold text-sm sm:text-base px-7 sm:px-9 py-2.5 sm:py-3 rounded-full shadow-md hover:scale-105 transition-all duration-200"
-          >
+          <Button variant="gold" size="lg" glow onClick={() => setStep(1)}>
             💡 Turn On the Lights
-          </button>
+          </Button>
         )}
         {step === 1 && (
-          <button
-            onClick={() => { onPlayMusic(); setStep(2); }}
-            className="bg-gradient-to-r from-pink-500 to-pink-600 hover:from-pink-600 hover:to-pink-700 text-white font-semibold text-sm sm:text-base px-9 sm:px-12 py-2.5 sm:py-3 rounded-full shadow-lg hover:scale-105 transition-all duration-200"
+          <Button
+            variant="primary"
+            size="lg"
+            glow
+            onClick={() => {
+              onPlayMusic();
+              setStep(2);
+            }}
           >
             🎵 Play Music
-          </button>
+          </Button>
         )}
         {step === 2 && (
-          <button
-            onClick={handleFlyBalloons}
-            className="bg-gradient-to-r from-purple-500 to-purple-700 hover:from-purple-600 hover:to-purple-800 text-white font-semibold text-sm sm:text-base px-8 sm:px-10 py-2.5 sm:py-3 rounded-full shadow-lg hover:scale-105 transition-all duration-200"
-          >
+          <Button variant="secondary" size="lg" glow onClick={handleFlyBalloons}>
             🎈 Fly the Balloons
-          </button>
+          </Button>
         )}
         {step === 3 && (
-          <button
-            onClick={onMessage}
-            className="bg-gradient-to-r from-orange-400 to-orange-500 hover:from-orange-500 hover:to-orange-600 text-white font-semibold text-xs sm:text-sm md:text-base px-5 sm:px-7 py-2.5 sm:py-3 rounded-full shadow-lg hover:scale-105 transition-all duration-200 text-center max-w-xs"
-          >
+          <Button variant="sunset" size="lg" glow onClick={onMessage} className="text-center max-w-xs">
             💌 Well, I Have a Message for You Madam Jiii
-          </button>
+          </Button>
         )}
       </div>
 
@@ -286,9 +289,6 @@ export default function CelebrationScreen({ onMessage, onPlayMusic }: Props) {
         </div>
       )}
 
-      {/* Spacer */}
-      <div className="flex-1" />
-
       {/* Balloons */}
       {step >= 3 && (
         <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
@@ -298,9 +298,12 @@ export default function CelebrationScreen({ onMessage, onPlayMusic }: Props) {
         </div>
       )}
 
+      {/* Confetti burst */}
+      {step >= 3 && <Confetti />}
+
       {/* Cake */}
       {step >= 2 && (
-        <div className="pb-8 sm:pb-12 fade-in-up relative z-10">
+        <div className="mt-6 sm:mt-8 fade-in-up relative z-10">
           <BirthdayCake />
         </div>
       )}

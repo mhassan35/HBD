@@ -69,9 +69,11 @@ export default function PlayMusicButton({ isPlaying, onToggle }: Props) {
   return (
     <button
       onClick={() => onToggle(!isPlaying)}
-      className="fixed top-4 right-4 z-50 flex items-center gap-1.5 bg-white/90 backdrop-blur-sm border border-pink-200 text-pink-600 text-xs sm:text-sm font-medium px-3 sm:px-4 py-1.5 sm:py-2 rounded-full shadow-md hover:shadow-lg hover:bg-pink-50 transition-all duration-200"
+      aria-pressed={isPlaying}
+      className="fixed top-4 right-4 sm:top-6 sm:right-6 z-50 flex items-center gap-1.5 bg-white/85 backdrop-blur-md border border-pink-200/80 text-pink-600 text-xs sm:text-sm font-medium px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full shadow-md hover:shadow-lg hover:bg-white active:scale-95 transition-all duration-200 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-pink-200"
     >
-      🎵 {isPlaying ? 'Pause Music' : 'Play Music'}
+      <span aria-hidden="true">{isPlaying ? '⏸️' : '🎵'}</span>
+      <span>{isPlaying ? 'Pause' : 'Play Music'}</span>
     </button>
   );
 }

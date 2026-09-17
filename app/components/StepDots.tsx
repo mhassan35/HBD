@@ -9,10 +9,10 @@ export default function StepDots({ total, current }: Props) {
       {Array.from({ length: total }, (_, i) => (
         <div
           key={i}
-          className={`rounded-full transition-all duration-300 ${
+          className={`h-2 rounded-full transition-all duration-300 ${
             i === current
-              ? 'w-3 h-3 bg-pink-500'
-              : 'w-2.5 h-2.5 bg-pink-200'
+              ? 'w-6 bg-linear-to-r from-rose-500 to-pink-600'
+              : 'w-2 bg-pink-200'
           }`}
         />
       ))}

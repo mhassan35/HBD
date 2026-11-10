@@ -1,6 +1,7 @@
 import { createHmac, timingSafeEqual } from "node:crypto";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
+import LovePageExperience from "./LovePageExperience";
 
 const ACCESS_COOKIE = "love-page-access";
 const ACCESS_COOKIE_VALUE = "love-page-unlocked:v1";
@@ -64,6 +65,10 @@ export default async function LovePage({ searchParams }: PageProps) {
   const hasAccess = isSessionValid(cookieStore.get(ACCESS_COOKIE)?.value);
   const { error } = await searchParams;
 
+  if (hasAccess) {
+    return <LovePageExperience />;
+  }
+
   return (
     <main className="relative flex min-h-screen items-center justify-center overflow-hidden bg-[#18051f] px-4 py-12 text-white">
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 overflow-hidden">
@@ -77,58 +82,42 @@ export default async function LovePage({ searchParams }: PageProps) {
           💌
         </div>
 
-        {hasAccess ? (
-          <>
-            <p className="text-sm font-medium tracking-[0.2em] text-pink-200/80 uppercase">
-              Access granted
-            </p>
-            <h1 className="mt-3 font-display text-3xl font-semibold text-white sm:text-4xl">
-              Welcome, Sweetheart
-            </h1>
-            <p className="mt-4 text-sm leading-relaxed text-white/75 sm:text-base">
-              Your private love page is ready for its next surprise. 💜
-            </p>
-          </>
-        ) : (
-          <>
-            <p className="text-sm font-medium tracking-[0.2em] text-pink-200/80 uppercase">
-              A little secret
-            </p>
-            <h1 className="mt-3 font-display text-3xl font-semibold text-white sm:text-4xl">
-              This page is just for you
-            </h1>
-            <p className="mt-3 text-sm leading-relaxed text-white/75 sm:text-base">
-              Enter the password to open your special page.
-            </p>
+        <p className="text-sm font-medium tracking-[0.2em] text-pink-200/80 uppercase">
+          A little secret
+        </p>
+        <h1 className="mt-3 font-display text-3xl font-semibold text-white sm:text-4xl">
+          This page is just for you
+        </h1>
+        <p className="mt-3 text-sm leading-relaxed text-white/75 sm:text-base">
+          Enter the password to open your special page.
+        </p>
 
-            <form action={unlockLovePage} className="mt-7 space-y-4 text-left">
-              <label htmlFor="password" className="block text-sm font-medium text-pink-100">
-                Password
-              </label>
-              <input
-                autoComplete="current-password"
-                autoFocus
-                className="w-full rounded-xl border border-white/20 bg-black/20 px-4 py-3 text-center text-lg tracking-[0.2em] text-white outline-none transition placeholder:text-white/40 focus:border-pink-300 focus:ring-4 focus:ring-pink-300/20"
-                id="password"
-                name="password"
-                placeholder="Enter password"
-                required
-                type="password"
-              />
-              {error === "1" && (
-                <p className="text-center text-sm text-rose-200" role="alert">
-                  That password doesn&apos;t look right. Please try again.
-                </p>
-              )}
-              <button
-                className="w-full rounded-xl bg-linear-to-r from-pink-500 to-rose-500 px-5 py-3 font-semibold text-white shadow-lg shadow-rose-950/30 transition hover:brightness-110 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-pink-200/50 active:scale-[0.98]"
-                type="submit"
-              >
-                Open my page <span aria-hidden="true">♥</span>
-              </button>
-            </form>
-          </>
-        )}
+        <form action={unlockLovePage} className="mt-7 space-y-4 text-left">
+          <label htmlFor="password" className="block text-sm font-medium text-pink-100">
+            Password
+          </label>
+          <input
+            autoComplete="current-password"
+            autoFocus
+            className="w-full rounded-xl border border-white/20 bg-black/20 px-4 py-3 text-center text-lg tracking-[0.2em] text-white outline-none transition placeholder:text-white/40 focus:border-pink-300 focus:ring-4 focus:ring-pink-300/20"
+            id="password"
+            name="password"
+            placeholder="Enter password"
+            required
+            type="password"
+          />
+          {error === "1" && (
+            <p className="text-center text-sm text-rose-200" role="alert">
+              That password doesn&apos;t look right. Please try again.
+            </p>
+          )}
+          <button
+            className="w-full rounded-xl bg-linear-to-r from-pink-500 to-rose-500 px-5 py-3 font-semibold text-white shadow-lg shadow-rose-950/30 transition hover:brightness-110 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-pink-200/50 active:scale-[0.98]"
+            type="submit"
+          >
+            Open my page <span aria-hidden="true">♥</span>
+          </button>
+        </form>
       </section>
     </main>
   );

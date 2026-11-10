@@ -329,11 +329,294 @@ body {
   animation: cakeKnifeCut 700ms ease-in forwards;
 }
 
+.love-page {
+  isolation: isolate;
+  background:
+    radial-gradient(ellipse at 15% 15%, rgba(190, 24, 93, 0.24), transparent 35%),
+    radial-gradient(ellipse at 85% 85%, rgba(124, 58, 237, 0.2), transparent 38%),
+    linear-gradient(145deg, #18051f, #260a31 55%, #16051f);
+}
+
+.love-page-glow {
+  position: absolute;
+  z-index: -1;
+  width: 22rem;
+  height: 22rem;
+  border-radius: 9999px;
+  filter: blur(80px);
+  opacity: 0.4;
+  animation: loveGlowDrift 12s ease-in-out infinite alternate;
+}
+
+.love-page-glow-one {
+  top: -10rem;
+  left: -8rem;
+  background: #e11d78;
+}
+
+.love-page-glow-two {
+  right: -9rem;
+  bottom: -10rem;
+  background: #7c3aed;
+  animation-delay: -4s;
+}
+
+.love-page-glow-three {
+  top: 40%;
+  left: 42%;
+  width: 14rem;
+  height: 14rem;
+  background: #fb7185;
+  opacity: 0.17;
+  animation-delay: -7s;
+}
+
+.love-page-hearts {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.love-page-heart {
+  position: absolute;
+  bottom: -3rem;
+  font-size: clamp(1.2rem, 3vw, 2rem);
+  opacity: 0;
+  animation: loveHeartFloat 12s linear infinite;
+}
+
+.love-page-panel {
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.045));
+  box-shadow: 0 24px 90px rgba(0, 0, 0, 0.3), inset 0 1px rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(18px);
+}
+
+.love-page-enter {
+  animation: lovePageEnter 650ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+.love-page-title {
+  color: #ffe4ef;
+  text-shadow: 0 0 32px rgba(251, 113, 133, 0.32);
+  animation: loveTitleGlow 3s ease-in-out infinite alternate;
+}
+
+.love-page-title-drift {
+  display: inline-block;
+  animation: loveTitleGlow 3s ease-in-out infinite alternate, loveTitleDrift 5s ease-in-out infinite;
+}
+
+.love-page-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  min-width: 7rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 9999px;
+  padding: 0.85rem 1.6rem;
+  color: white;
+  font-weight: 700;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.22);
+  transition: transform 200ms ease, filter 200ms ease, box-shadow 200ms ease;
+}
+
+.love-page-button:hover {
+  filter: brightness(1.1);
+  transform: translateY(-3px) scale(1.04);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.3);
+}
+
+.love-page-button:active {
+  transform: scale(0.97);
+}
+
+.love-page-button:focus-visible,
+.love-page-card-track:focus-visible {
+  outline: 3px solid #fbcfe8;
+  outline-offset: 4px;
+}
+
+.love-page-yes,
+.love-page-continue {
+  background: linear-gradient(110deg, #ec4899, #be185d);
+}
+
+.love-page-no {
+  background: linear-gradient(110deg, #6b7280, #4b5563);
+}
+
+.love-page-no-running {
+  position: fixed;
+  z-index: 50;
+  transition: left 360ms cubic-bezier(0.2, 0.8, 0.2, 1), top 360ms cubic-bezier(0.2, 0.8, 0.2, 1), transform 360ms ease;
+}
+
+.love-page-celebration {
+  animation: loveEmojiBounce 1.2s ease-in-out infinite alternate;
+}
+
+.love-page-message {
+  animation: loveCardPop 700ms 150ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+.love-page-card-track {
+  display: flex;
+  gap: 1.25rem;
+  overflow-x: auto;
+  padding: 1rem 1.25rem 1.5rem;
+  cursor: grab;
+  scrollbar-width: none;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+  touch-action: pan-y;
+  user-select: none;
+}
+
+.love-page-card-track::-webkit-scrollbar {
+  display: none;
+}
+
+.love-page-card-track.is-dragging {
+  cursor: grabbing;
+  scroll-behavior: auto;
+  scroll-snap-type: none;
+}
+
+.love-page-card {
+  position: relative;
+  display: flex;
+  flex: 0 0 min(82vw, 20rem);
+  min-height: 18rem;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.19);
+  border-radius: 1.75rem;
+  padding: 1.75rem;
+  background:
+    radial-gradient(circle at 85% 10%, rgba(251, 207, 232, 0.17), transparent 34%),
+    linear-gradient(145deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.055));
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.22), inset 0 1px rgba(255, 255, 255, 0.16);
+  scroll-snap-align: center;
+  animation: loveCardPop 700ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  transition: transform 250ms ease, border-color 250ms ease, box-shadow 250ms ease;
+}
+
+.love-page-card::after {
+  position: absolute;
+  inset: -60% auto -60% -80%;
+  width: 45%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.13), transparent);
+  content: "";
+  transform: rotate(20deg);
+  transition: left 500ms ease;
+}
+
+.love-page-card:hover {
+  z-index: 1;
+  border-color: rgba(251, 207, 232, 0.48);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.3), 0 0 28px rgba(236, 72, 153, 0.14);
+  transform: translateY(-8px) rotate(-1deg);
+}
+
+.love-page-card:hover::after {
+  left: 140%;
+}
+
+.love-page-card-number {
+  position: absolute;
+  top: 1rem;
+  left: 1.2rem;
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+}
+
+.love-page-card-icon {
+  display: grid;
+  width: 4.25rem;
+  height: 4.25rem;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 1.4rem;
+  background: rgba(255, 255, 255, 0.1);
+  font-size: 2rem;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.16);
+  animation: loveIconFloat 3s ease-in-out infinite alternate;
+}
+
+.love-page-card:nth-child(2) .love-page-card-icon {
+  animation-delay: -1s;
+}
+
+.love-page-card:nth-child(3) .love-page-card-icon {
+  animation-delay: -2s;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+}
+
+@keyframes loveGlowDrift {
+  from { transform: translate3d(-2%, -1%, 0) scale(0.94); }
+  to { transform: translate3d(5%, 7%, 0) scale(1.08); }
+}
+
+@keyframes loveHeartFloat {
+  0% { transform: translate3d(0, 0, 0) rotate(-12deg); opacity: 0; }
+  12% { opacity: 0.62; }
+  85% { opacity: 0.42; }
+  100% { transform: translate3d(2rem, -115vh, 0) rotate(18deg); opacity: 0; }
+}
+
+@keyframes lovePageEnter {
+  from { transform: translateY(24px) scale(0.98); opacity: 0; }
+  to { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+@keyframes loveTitleGlow {
+  from { filter: drop-shadow(0 0 5px rgba(244, 114, 182, 0.18)); }
+  to { filter: drop-shadow(0 0 20px rgba(244, 114, 182, 0.5)); }
+}
+
+@keyframes loveTitleDrift {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-7px); }
+}
+
+@keyframes loveEmojiBounce {
+  from { transform: translateY(0) scale(1); }
+  to { transform: translateY(-8px) scale(1.05); }
+}
+
+@keyframes loveCardPop {
+  from { transform: translateY(24px) scale(0.94); opacity: 0; }
+  to { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+@keyframes loveIconFloat {
+  from { transform: translateY(0) rotate(-4deg); }
+  to { transform: translateY(-6px) rotate(4deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .love-page-glow,
+  .love-page-heart,
+  .love-page-title,
+  .love-page-title-drift,
+  .love-page-celebration,
+  .love-page-card,
+  .love-page-card-icon {
+    animation: none;
   }
 }

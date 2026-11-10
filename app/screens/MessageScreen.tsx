@@ -22,7 +22,7 @@ export default function MessageScreen({ onBack }: Props) {
       <div className="relative z-10 w-full max-w-sm sm:max-w-lg mx-auto text-center">
         {/* Title */}
         <h2 className="font-display italic text-xl sm:text-2xl md:text-3xl font-semibold text-pink-600 mb-4 sm:mb-6">
-          ♥ A Message From My Heart
+          ♥ Birthday Blessings For You
         </h2>
 
         {/* Scroll rod */}
@@ -50,18 +50,20 @@ export default function MessageScreen({ onBack }: Props) {
             }`}
           >
             <div className="p-5 sm:p-7 text-left text-gray-700 text-sm sm:text-base leading-relaxed font-serif">
-              <p className="mb-3">[Recipient Name],</p>
-              <p className="mb-3">Your personalized birthday message goes here.</p>
+              <p className="mb-3">Dear Tasbiha Noor,</p>
               <p className="mb-3">
-                You can write multiple paragraphs to express your feelings,
-                share memories, and make this special day even more memorable.
+                Happy Birthday to someone who brings so much warmth and joy to the people around her.
               </p>
               <p className="mb-3">
-                This template supports multiple lines and formatting,
-                so feel free to customize it completely to fit your style.
+                May your year ahead be filled with happiness, beautiful surprises, cherished
+                memories, and every good thing your heart hopes for.
               </p>
-              <p className="mb-3">Happy Birthday! 🎉</p>
-              <p>— [Your Name]</p>
+              <p className="mb-3">
+                May you always be surrounded by love, find strength in every challenge, and have
+                countless reasons to smile. You deserve all the joy this special day brings.
+              </p>
+              <p className="mb-3">Wishing you the happiest birthday and a truly wonderful year ahead! 🎉💜</p>
+              <p>With all my love,<br />Your Jaan</p>
             </div>
           </div>
 
@@ -115,20 +117,20 @@ export default function MessageScreen({ onBack }: Props) {
                   </button>
                 </span>
                 <span className="text-white/90 text-xs sm:text-sm font-medium tracking-wide drop-shadow">
-                  Tap to open ✨
+                  Open your birthday wish ✨
                 </span>
               </div>
             </>
           )}
         </div>
 
-        {/* Closing flourish, replaces the old memories CTA once the letter is open */}
+        {/* Closing birthday wish */}
         {isOpen && (
           <div className="mt-8 text-center fade-in-up space-y-1">
             <p className="font-display italic text-pink-600 font-semibold text-lg sm:text-xl md:text-2xl">
-              ♥ Forever Yours ♥
+              ♥ With Love, Always ♥
             </p>
-            <p className="text-gray-400 text-xs sm:text-sm italic">— [Your Name]</p>
+            <p className="text-gray-400 text-xs sm:text-sm italic">Wishing you a beautiful birthday 💜</p>
           </div>
         )}
       </div>

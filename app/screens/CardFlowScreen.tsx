@@ -27,7 +27,7 @@ export default function CardFlowScreen({ onComplete }: Props) {
           <BirthdayCard>
             <Sparkle />
             <p className="font-display text-xl sm:text-2xl font-semibold text-gray-800 mb-6 mt-2">
-              It&apos;s Your Special Day Yeyey!
+              Today is all about celebrating you, Tasbiha Noor! 💜
             </p>
             <Button onClick={() => setStep(1)} glow>
               Next
@@ -41,14 +41,14 @@ export default function CardFlowScreen({ onComplete }: Props) {
           <BirthdayCard>
             <Sparkle />
             <p className="font-display text-xl sm:text-2xl font-semibold text-gray-800 mb-6 mt-2">
-              Do you wanna see what I made??
+              Would you like to open your birthday surprise?
             </p>
             <div className="flex gap-3 justify-center">
               <Button onClick={() => setStep(2)} glow>
-                Yes! 🔥
+                Yes, please! 💜
               </Button>
               <Button variant="secondary" onClick={() => setNoClicked(true)}>
-                No
+                Not now
               </Button>
             </div>
             <StepDots total={3} current={1} />
@@ -60,10 +60,10 @@ export default function CardFlowScreen({ onComplete }: Props) {
           <BirthdayCard>
             <div className="text-4xl sm:text-5xl mb-4 shake-anim">😢😭😢</div>
             <p className="font-display text-xl sm:text-2xl font-semibold text-gray-800 mb-2">
-              You said no... 💔
+              No worries, Tasbiha! 💜
             </p>
             <p className="text-gray-500 text-sm mb-6">
-              Are you sure? This took so much love! 🥺
+              Your birthday surprise will be waiting whenever you&apos;re ready.
             </p>
             <Button
               glow
@@ -72,7 +72,7 @@ export default function CardFlowScreen({ onComplete }: Props) {
                 setStep(2);
               }}
             >
-              Just kidding, Yes! 💕
+              I&apos;m ready! 💕
             </Button>
             <StepDots total={3} current={1} />
           </BirthdayCard>
@@ -83,10 +83,10 @@ export default function CardFlowScreen({ onComplete }: Props) {
           <BirthdayCard>
             <Sparkle />
             <p className="font-display text-xl sm:text-2xl font-semibold text-gray-800 mb-6 mt-2">
-              Have a look at it, Madam Jiii
+              Your birthday surprise is ready, Tasbiha!
             </p>
             <Button onClick={onComplete} glow>
-              Let&apos;s Go! 🚀
+              Let&apos;s Celebrate! 🎉
             </Button>
             <StepDots total={3} current={2} />
           </BirthdayCard>

@@ -16,8 +16,8 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: "Happy Birthday! 🎂",
-  description: "A special birthday surprise just for you",
+  title: "Happy Birthday Dear Tasbiha Noor! 🎂",
+  description: "Birthday wishes and blessings made especially for Tasbiha Noor.",
 };
 
 export const viewport: Viewport = {

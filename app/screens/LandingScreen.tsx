@@ -34,7 +34,7 @@ export default function LandingScreen({ onStart }: Props) {
         >
           Happy Birthday{' '}
           <span className="text-shimmer text-transparent bg-clip-text bg-linear-to-r from-rose-500 via-fuchsia-500 to-pink-600 italic">
-            [Name]
+            Dear Tasbiha Noor
           </span>{' '}
           🎂
         </h1>
@@ -43,14 +43,14 @@ export default function LandingScreen({ onStart }: Props) {
           className="text-gray-500 italic text-sm sm:text-base md:text-lg fade-in-up"
           style={{ animationDelay: '0.35s', opacity: 0, animationFillMode: 'forwards' }}
         >
-          Your personalized message goes here 💜
+          May your day be filled with love, laughter, and all the happiness you bring to others. 💜
         </p>
 
         <p
           className="text-pink-500 text-lg sm:text-xl md:text-2xl font-semibold fade-in-up"
           style={{ animationDelay: '0.45s', opacity: 0, animationFillMode: 'forwards' }}
         >
-          🎉 It&apos;s Your Birthday! 🎉
+          🎉 Today is all about celebrating you! 🎉
         </p>
 
         <div
@@ -58,10 +58,10 @@ export default function LandingScreen({ onStart }: Props) {
           style={{ animationDelay: '0.55s', opacity: 0, animationFillMode: 'forwards' }}
         >
           <p className="text-gray-700 font-semibold text-sm sm:text-base md:text-lg">
-            💜 Ready for your surprise! 💜
+            💜 You deserve a day as wonderful as you are. 💜
           </p>
           <p className="text-gray-400 text-xs sm:text-sm italic">
-            Something magical is about to unfold ✨
+            May the year ahead bring you joy, love, and countless reasons to smile. ✨
           </p>
         </div>
 
@@ -78,7 +78,7 @@ export default function LandingScreen({ onStart }: Props) {
               }}
             />
             <Button onClick={onStart} size="lg" className="relative">
-              🎊 Let&apos;s Celebrate
+              🎊 Celebrate Tasbiha
             </Button>
           </span>
         </div>

@@ -104,37 +104,51 @@ function HappyBirthdayText() {
   );
 }
 
-function BirthdayCake() {
+function BirthdayCake({ isCut }: { isCut: boolean }) {
   return (
-    <div className="flex flex-col items-center drop-shadow-xl">
-      {/* Candles */}
-      <div className="flex gap-2.5 sm:gap-3 mb-1">
+    <div className="relative flex h-48 w-64 flex-col items-center justify-end">
+      <div
+        className={`absolute top-0 left-1/2 z-10 flex -translate-x-1/2 gap-3 transition-opacity duration-300 ${
+          isCut ? 'opacity-0' : 'opacity-100'
+        }`}
+        aria-hidden="true"
+      >
         {[0, 1, 2, 3, 4].map((i) => (
           <div key={i} className="flex flex-col items-center">
-            <div
-              className="w-2 h-3 sm:h-4 rounded-t-full candle-flame"
-              style={{
-                background: 'radial-gradient(ellipse at bottom, #fff176, #fbbf24)',
-                animationDelay: `${i * 0.1}s`,
-              }}
+            <span
+              className="candle-flame mb-0.5 h-4 w-2 rounded-full bg-linear-to-t from-orange-400 to-yellow-100 shadow-[0_0_12px_4px_rgba(251,191,36,0.65)]"
+              style={{ animationDelay: `${i * 0.1}s` }}
             />
-            <div
-              className="w-2.5 sm:w-3 h-7 sm:h-9 rounded-sm"
-              style={{ background: i % 2 === 0 ? '#f97316' : '#ec4899' }}
-            />
+            <span className="h-7 w-2 rounded-sm bg-linear-to-r from-pink-300 to-rose-500" />
           </div>
         ))}
       </div>
-      {/* Top tier */}
-      <div
-        className="w-28 sm:w-36 h-8 sm:h-10 rounded-t-lg"
-        style={{ background: 'linear-gradient(to bottom, #fde68a, #f9e4c0)' }}
-      />
-      {/* Bottom tier */}
-      <div
-        className="w-36 sm:w-44 h-10 sm:h-12 rounded-b-lg"
-        style={{ background: 'linear-gradient(to bottom, #f9e4c0, #d4a76a)' }}
-      />
+      <div className="relative flex h-32 w-56 items-end justify-center">
+        <div className={`cake-half cake-half-left ${isCut ? 'cake-slice-left' : ''}`}>
+          <div className="cake-top-half cake-top-left">
+            <span className="cake-icing" />
+          </div>
+          <div className="cake-base-half cake-base-left">
+            <span className="cake-sprinkle cake-sprinkle-one" />
+            <span className="cake-sprinkle cake-sprinkle-two" />
+          </div>
+        </div>
+        <div className={`cake-half cake-half-right ${isCut ? 'cake-slice-right' : ''}`}>
+          <div className="cake-top-half cake-top-right">
+            <span className="cake-icing" />
+          </div>
+          <div className="cake-base-half cake-base-right">
+            <span className="cake-sprinkle cake-sprinkle-one" />
+            <span className="cake-sprinkle cake-sprinkle-two" />
+          </div>
+        </div>
+        {!isCut && <span className="cake-cut-line" aria-hidden="true" />}
+        {isCut && <span className="cake-knife" aria-hidden="true" />}
+      </div>
+      <div className="h-3 w-60 rounded-[50%] border border-amber-100/70 bg-linear-to-b from-white to-amber-100 shadow-[0_8px_24px_rgba(244,114,182,0.28)]" />
+      <span className="mt-2 text-xs font-medium tracking-wide text-amber-100/80">
+        {isCut ? 'A sweet wish, just for you' : 'Make a wish, Tasbiha!'}
+      </span>
     </div>
   );
 }
@@ -208,6 +222,7 @@ function DarkParticles() {
 export default function CelebrationScreen({ onMessage, onPlayMusic }: Props) {
   const [step, setStep] = useState(0);
   const [balloons, setBalloons] = useState<BalloonItem[]>([]);
+  const [cakeCut, setCakeCut] = useState(false);
 
   const handleFlyBalloons = () => {
     setBalloons(
@@ -224,87 +239,107 @@ export default function CelebrationScreen({ onMessage, onPlayMusic }: Props) {
   const isDark = step >= 1;
 
   return (
-    <div className="min-h-screen relative flex flex-col items-center justify-center px-4 py-14 sm:py-20 fade-in">
+    <div className="min-h-screen relative flex flex-col items-center justify-center overflow-x-hidden px-4 py-8 sm:py-10 fade-in">
       <PageBackground dark={isDark} />
       {isDark ? <DarkParticles /> : <FloatingEmojis />}
 
-      {/* Header */}
-      <div className="pb-4 sm:pb-5 text-center relative z-10">
-        <h1
-          className={`font-display italic text-2xl sm:text-3xl md:text-4xl font-bold transition-colors duration-1000 ${
-            isDark ? 'text-pink-400' : 'text-pink-500'
-          }`}
-        >
-          Let&apos;s Celebrate! 🎉
-        </h1>
-        <p className={`text-xs sm:text-sm mt-1.5 transition-colors duration-1000 ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>
-          Click the buttons to decorate
-        </p>
-      </div>
+      <main className="relative z-10 flex w-full max-w-5xl flex-col items-center">
+        <header className="text-center">
+          <span className="mb-3 inline-flex items-center gap-2 rounded-full border border-pink-200/20 bg-white/5 px-4 py-1.5 text-xs font-medium tracking-[0.18em] text-pink-100/80 uppercase backdrop-blur-sm">
+            <span aria-hidden="true">✦</span> A day made for you <span aria-hidden="true">✦</span>
+          </span>
+          <h1 className="font-display text-3xl font-bold italic text-transparent bg-clip-text bg-linear-to-r from-rose-300 via-pink-400 to-amber-200 sm:text-4xl md:text-5xl">
+            Happy Birthday, Tasbiha Noor!
+          </h1>
+          <p className="mt-2 text-sm text-pink-100/70 sm:text-base">
+            May your day sparkle with all the happiness you deserve.
+          </p>
+        </header>
 
-      {/* Action button */}
-      <div className="mb-4 sm:mb-6 relative z-10 px-4">
-        {step === 0 && (
-          <Button variant="gold" size="lg" glow onClick={() => setStep(1)}>
-            💡 Turn On the Lights
-          </Button>
-        )}
-        {step === 1 && (
-          <Button
-            variant="primary"
-            size="lg"
-            glow
-            onClick={() => {
-              onPlayMusic();
-              setStep(2);
-            }}
-          >
-            🎵 Play Music
-          </Button>
-        )}
-        {step === 2 && (
-          <Button variant="secondary" size="lg" glow onClick={handleFlyBalloons}>
-            🎈 Fly the Balloons
-          </Button>
-        )}
-        {step === 3 && (
-          <Button variant="sunset" size="lg" glow onClick={onMessage} className="text-center max-w-xs">
-            💌 Well, I Have a Message for You Madam Jiii
-          </Button>
-        )}
-      </div>
-
-      {/* String lights */}
-      {step >= 1 && (
-        <div className="w-full fade-in relative z-10">
-          <StringLights />
+        <div className="my-5 min-h-12 relative z-10 px-4 sm:my-6">
+          {step === 0 && (
+            <Button variant="gold" size="lg" glow onClick={() => setStep(1)}>
+              💡 Light Up the Celebration
+            </Button>
+          )}
+          {step === 1 && (
+            <Button
+              variant="primary"
+              size="lg"
+              glow
+              onClick={() => {
+                onPlayMusic();
+                setStep(2);
+              }}
+            >
+              🎵 Play Music
+            </Button>
+          )}
+          {step === 2 && !cakeCut && (
+            <Button variant="secondary" size="lg" glow onClick={() => setCakeCut(true)}>
+              🔪 Cut the Birthday Cake
+            </Button>
+          )}
+          {step === 2 && cakeCut && (
+            <Button variant="gold" size="lg" glow onClick={handleFlyBalloons}>
+              🎈 Send Your Birthday Wishes
+            </Button>
+          )}
+          {step === 3 && (
+            <Button variant="sunset" size="lg" glow onClick={onMessage} className="text-center max-w-xs">
+              💌 Open Your Birthday Wish
+            </Button>
+          )}
         </div>
-      )}
 
-      {/* Bunting + Happy Birthday text */}
-      {step >= 2 && (
-        <div className="w-full fade-in-up relative z-10 mt-2">
-          <Bunting />
-          <HappyBirthdayText />
-        </div>
-      )}
+        {step >= 1 && (
+          <div className="mb-5 w-full fade-in relative z-10 sm:mb-6">
+            <StringLights />
+          </div>
+        )}
 
-      {/* Balloons */}
+        {step >= 1 && (
+          <section aria-label="Birthday blessings" className="grid w-full grid-cols-1 gap-3 fade-in-up sm:grid-cols-3 sm:gap-4">
+            {[
+              { icon: '🌷', title: 'A Year of Joy', text: 'May laughter find you often and fill your days with beautiful memories.' },
+              { icon: '✨', title: 'Dreams Come True', text: 'May every hope in your heart bring you closer to something wonderful.' },
+              { icon: '💜', title: 'Love All Around', text: 'May you always feel cherished, supported, and appreciated for who you are.' },
+            ].map((blessing, i) => (
+              <article
+                key={blessing.title}
+                className="fade-in-up rounded-2xl border border-white/20 bg-[#2b1238]/90 px-4 py-4 text-center shadow-[0_12px_40px_rgba(5,0,20,0.3)] backdrop-blur-md sm:px-5 sm:py-5"
+                style={{ animationDelay: `${i * 0.12}s` }}
+              >
+                <span className="mb-2 inline-flex h-10 w-10 items-center justify-center rounded-full bg-pink-200/15 text-xl" aria-hidden="true">
+                  {blessing.icon}
+                </span>
+                <h2 className="font-display text-lg font-semibold text-amber-200">{blessing.title}</h2>
+                <p className="mt-1.5 text-xs leading-relaxed text-white/85 sm:text-sm">{blessing.text}</p>
+              </article>
+            ))}
+          </section>
+        )}
+
+        {step >= 2 && (
+          <>
+            <div className="mt-5 w-full fade-in-up sm:mt-6">
+              <Bunting />
+              <HappyBirthdayText />
+            </div>
+            <div className="mt-5 fade-in-up sm:mt-6">
+              <BirthdayCake isCut={cakeCut} />
+            </div>
+          </>
+        )}
+      </main>
+
+      {cakeCut && <Confetti />}
+
       {step >= 3 && (
         <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
           {balloons.map((b, i) => (
             <Balloon key={i} {...b} />
           ))}
-        </div>
-      )}
-
-      {/* Confetti burst */}
-      {step >= 3 && <Confetti />}
-
-      {/* Cake */}
-      {step >= 2 && (
-        <div className="mt-6 sm:mt-8 fade-in-up relative z-10">
-          <BirthdayCake />
         </div>
       )}
     </div>

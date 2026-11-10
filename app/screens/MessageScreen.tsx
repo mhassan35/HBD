@@ -52,7 +52,7 @@ export default function MessageScreen({ onBack }: Props) {
             <div className="p-5 sm:p-7 text-left text-gray-700 text-sm sm:text-base leading-relaxed font-serif">
               <p className="mb-3">Dear Tasbiha Noor,</p>
               <p className="mb-3">
-                Happy Birthday to someone who brings so much warmth and joy to the people around her.
+                Sweet Biyaa, Happy Birthday to someone who brings so much warmth and joy to the people around her.
               </p>
               <p className="mb-3">
                 May your year ahead be filled with happiness, beautiful surprises, cherished

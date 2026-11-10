@@ -147,7 +147,7 @@ function BirthdayCake({ isCut }: { isCut: boolean }) {
       </div>
       <div className="h-3 w-60 rounded-[50%] border border-amber-100/70 bg-linear-to-b from-white to-amber-100 shadow-[0_8px_24px_rgba(244,114,182,0.28)]" />
       <span className="mt-2 text-xs font-medium tracking-wide text-amber-100/80">
-        {isCut ? 'A sweet wish, just for you' : 'Make a wish, Tasbiha!'}
+        {isCut ? 'A sweet wish, just for you' : 'Make a wish, Dear Sweet Heart!'}
       </span>
     </div>
   );
@@ -249,7 +249,7 @@ export default function CelebrationScreen({ onMessage, onPlayMusic }: Props) {
             <span aria-hidden="true">✦</span> A day made for you <span aria-hidden="true">✦</span>
           </span>
           <h1 className="font-display text-3xl font-bold italic text-transparent bg-clip-text bg-linear-to-r from-rose-300 via-pink-400 to-amber-200 sm:text-4xl md:text-5xl">
-            Happy Birthday, Tasbiha Noor!
+            Happy Birthday, Sweet Biyaa!
           </h1>
           <p className="mt-2 text-sm text-pink-100/70 sm:text-base">
             May your day sparkle with all the happiness you deserve.

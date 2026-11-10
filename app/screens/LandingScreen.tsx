@@ -78,7 +78,7 @@ export default function LandingScreen({ onStart }: Props) {
               }}
             />
             <Button onClick={onStart} size="lg" className="relative">
-              🎊 Celebrate Tasbiha
+              🎊 Celebrate Sweet Biyaa
             </Button>
           </span>
         </div>

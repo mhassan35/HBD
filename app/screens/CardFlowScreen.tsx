@@ -27,7 +27,7 @@ export default function CardFlowScreen({ onComplete }: Props) {
           <BirthdayCard>
             <Sparkle />
             <p className="font-display text-xl sm:text-2xl font-semibold text-gray-800 mb-6 mt-2">
-              Today is all about celebrating you, Tasbiha Noor! 💜
+              Today is all about celebrating you, Tasbhia Noor! 💜
             </p>
             <Button onClick={() => setStep(1)} glow>
               Next
@@ -60,7 +60,7 @@ export default function CardFlowScreen({ onComplete }: Props) {
           <BirthdayCard>
             <div className="text-4xl sm:text-5xl mb-4 shake-anim">😢😭😢</div>
             <p className="font-display text-xl sm:text-2xl font-semibold text-gray-800 mb-2">
-              No worries, Tasbiha! 💜
+              No worries, Dear Sweet Heart! 💜
             </p>
             <p className="text-gray-500 text-sm mb-6">
               Your birthday surprise will be waiting whenever you&apos;re ready.
@@ -83,7 +83,7 @@ export default function CardFlowScreen({ onComplete }: Props) {
           <BirthdayCard>
             <Sparkle />
             <p className="font-display text-xl sm:text-2xl font-semibold text-gray-800 mb-6 mt-2">
-              Your birthday surprise is ready, Tasbiha!
+              Your birthday surprise is ready, Sweet Biyaa!
             </p>
             <Button onClick={onComplete} glow>
               Let&apos;s Celebrate! 🎉

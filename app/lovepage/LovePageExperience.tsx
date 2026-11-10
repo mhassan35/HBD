@@ -8,9 +8,30 @@ type Phase = "question" | "answer" | "welcome" | "surprise";
 const FLOATING_EMOJIS = ["💖", "✨", "🥰", "💕", "🌸", "💫", "😄", "💗"];
 
 const PLACEHOLDER_CARDS = [
-  { number: "01", icon: "💌", title: "A little surprise", text: "Your first special card will go here." },
-  { number: "02", icon: "🌷", title: "A little more love", text: "A lovely message is waiting to be added." },
-  { number: "03", icon: "✨", title: "One last treat", text: "Your final surprise will go here." },
+  {
+    icon: "💌",
+    paragraphs: [
+      "First of all, a very, very happy birthday to you! ❤️",
+      "I just want you to know how much I truly love you. I have so much love, affection, and attachment to you. When you're with me, everything feels like my own, and life feels complete. But whenever we fight or get upset with each other, nothing feels right. It makes me realise that we should never fight because, even when we're arguing, our hearts still love each other just as much as ever.",
+      "I find you so special and adorable because of the person you are. You're beautiful, handsome, kind-hearted, cheerful, cooperative, and honestly, one of a kind. You're different from everyone else, and what makes you even more special to me is the way you love me and take care of me. I love everything about you.",
+    ],
+  },
+  {
+    icon: "🌷",
+    paragraphs: [
+      "You probably remember how things were when we first started. Back then, we couldn't have imagined that we would become so Loved to each other. But look at us now! It's hard to imagine getting through a day without each other. We fight like crazy sometimes, but Alhamdulillah, even after all those arguments, the love, affection, and sincerity in our hearts are still the same.",
+      "On your special day, I pray that Allah blesses you with a long, healthy, peaceful, and beautiful life. May you always stay happy, may success follow you in everything you do, and may all your dreams come true. May Allah make every step of your journey easier and fill your life with endless blessings.",
+      "Always remember that my love, my support, and my prayers are with you. Never feel worried or alone when facing anything in life. I'm yours, I'm loyal to you, and I'll always stand by your side, through every good and difficult moment.",
+    ],
+  },
+  {
+    icon: "✨",
+    paragraphs: [
+      "InshaAllah, one day, the two of us will finally be together, and that day, that moment, will be one of the most beautiful moments of our lives. I genuinely pray to Allah from the bottom of my heart to bring that day closer and make it happen soon. InshaAllah, when we finally get to start our journey together, we'll always stay by each other's side. Through every happiness and sadness, every struggle and every little moment of life, we'll face everything together. So don't worry, my love. One day, InshaAllah, we'll be together, we'll be one, and we'll never have to miss each other from a distance again. ❤️",
+      "Once again, happiest birthday to you, my love! May we keep growing together, loving each other, understanding each other, and making beautiful memories. And yes, let's try not to fight so much, because we're much better when we're happy together!",
+      "I love you so much. ❤️",
+    ],
+  },
 ];
 
 interface NoPosition {
@@ -53,7 +74,7 @@ export default function LovePageExperience() {
   const dragRef = useRef<DragState | null>(null);
 
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    window.scrollTo({ top: 0, behavior: "auto" });
   }, [phase]);
 
   const dodgeNoButton = () => {
@@ -106,7 +127,11 @@ export default function LovePageExperience() {
   };
 
   return (
-    <main className="love-page relative flex min-h-screen items-center justify-center overflow-hidden px-4 py-12 text-white">
+    <main
+      className={`love-page relative flex min-h-svh items-center justify-center overflow-x-clip px-3 py-8 text-white sm:px-4 sm:py-12 ${
+        phase === "surprise" ? "love-page-surprise" : ""
+      }`}
+    >
       <div className="love-page-glow love-page-glow-one" aria-hidden="true" />
       <div className="love-page-glow love-page-glow-two" aria-hidden="true" />
       <div className="love-page-glow love-page-glow-three" aria-hidden="true" />
@@ -124,7 +149,7 @@ export default function LovePageExperience() {
       </div>
 
       {phase === "question" && (
-        <section className="love-page-panel love-page-enter relative z-10 w-full max-w-xl rounded-[2rem] border border-white/15 px-6 py-10 text-center shadow-2xl sm:px-12 sm:py-14">
+        <section className="love-page-panel love-page-enter relative z-10 w-full max-w-xl rounded-4xl border border-white/15 px-6 py-10 text-center shadow-2xl sm:px-12 sm:py-14">
           <p className="text-sm font-semibold tracking-[0.3em] text-pink-200/80 uppercase">
             A tiny question for you
           </p>
@@ -160,7 +185,7 @@ export default function LovePageExperience() {
       )}
 
       {phase === "answer" && (
-        <section className="love-page-panel love-page-enter relative z-10 w-full max-w-xl rounded-[2rem] border border-white/15 px-6 py-10 text-center shadow-2xl sm:px-12 sm:py-14">
+        <section className="love-page-panel love-page-enter relative z-10 w-full max-w-xl rounded-4xl border border-white/15 px-6 py-10 text-center shadow-2xl sm:px-12 sm:py-14">
           <div className="love-page-celebration mb-5 text-5xl sm:text-6xl" aria-hidden="true">
             😂 🤭 😄 💖
           </div>
@@ -184,7 +209,7 @@ export default function LovePageExperience() {
       )}
 
       {phase === "welcome" && (
-        <section className="love-page-panel love-page-enter relative z-10 w-full max-w-xl rounded-[2rem] border border-white/15 px-6 py-10 text-center shadow-2xl sm:px-12 sm:py-14">
+        <section className="love-page-panel love-page-enter relative z-10 w-full max-w-xl rounded-4xl border border-white/15 px-6 py-10 text-center shadow-2xl sm:px-12 sm:py-14">
           <div className="love-page-celebration mb-5 text-5xl sm:text-6xl" aria-hidden="true">
             💖 🥰 💌
           </div>
@@ -210,19 +235,19 @@ export default function LovePageExperience() {
       )}
 
       {phase === "surprise" && (
-        <section className="love-page-enter relative z-10 w-full max-w-5xl text-center">
+        <section className="love-page-enter relative z-10 my-auto w-full max-w-5xl text-center">
           <p className="text-sm font-semibold tracking-[0.3em] text-pink-200/80 uppercase">
             Your next little surprise
           </p>
-          <h1 className="love-page-title love-page-title-drift mt-4 font-display text-4xl font-bold italic sm:text-6xl">
+          <h1 className="love-page-title love-page-title-drift mt-4 font-display text-3xl font-bold italic sm:text-5xl md:text-6xl">
             A little box of happiness
           </h1>
           <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-white/75 sm:text-base">
-            Three little cards, each waiting to hold something special. Drag or swipe to explore them.
+            I have something for you. Drag or swipe to read all three cards.
           </p>
 
           <div
-            aria-label="Three surprise cards. Drag or swipe left and right to explore."
+            aria-label="Three birthday message cards. Drag or swipe left and right to read each card."
             className={`love-page-card-track mt-9 ${isDragging ? "is-dragging" : ""}`}
             onLostPointerCapture={handlePointerEnd}
             onPointerCancel={handlePointerEnd}
@@ -237,16 +262,15 @@ export default function LovePageExperience() {
             {PLACEHOLDER_CARDS.map((card, index) => (
               <article
                 className="love-page-card"
-                key={card.number}
+                key={card.icon}
                 style={{ animationDelay: `${index * 0.15}s` }}
               >
-                <span className="love-page-card-number">{card.number}</span>
                 <span className="love-page-card-icon" aria-hidden="true">{card.icon}</span>
-                <h2 className="mt-5 font-display text-2xl font-semibold text-white">{card.title}</h2>
-                <p className="mt-3 text-sm leading-relaxed text-white/70">{card.text}</p>
-                <span className="mt-6 text-xs font-medium tracking-widest text-pink-200/80 uppercase">
-                  A surprise awaits
-                </span>
+                <div className="love-page-card-copy">
+                  {card.paragraphs.map((paragraph) => (
+                    <p key={paragraph}>{paragraph}</p>
+                  ))}
+                </div>
               </article>
             ))}
           </div>

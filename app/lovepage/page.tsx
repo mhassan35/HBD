@@ -77,7 +77,7 @@ export default async function LovePage({ searchParams }: PageProps) {
         <div className="absolute left-1/2 top-1/2 h-72 w-72 -translate-x-1/2 -translate-y-1/2 rounded-full bg-violet-500/10 blur-3xl" />
       </div>
 
-      <section className="relative w-full max-w-md rounded-3xl border border-white/15 bg-white/[0.08] p-7 text-center shadow-2xl shadow-black/30 backdrop-blur-xl sm:p-10">
+      <section className="relative w-full max-w-md rounded-3xl border border-white/15 bg-white/8 p-7 text-center shadow-2xl shadow-black/30 backdrop-blur-xl sm:p-10">
         <div className="mb-5 text-4xl" aria-hidden="true">
           💌
         </div>

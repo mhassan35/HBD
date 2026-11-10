@@ -17,6 +17,10 @@ body {
   background-color: #fdf2f8;
 }
 
+body:has(.love-page) {
+  background-color: #18051f;
+}
+
 ::selection {
   background-color: #fbcfe8;
   color: #831843;
@@ -338,7 +342,7 @@ body {
 }
 
 .love-page-glow {
-  position: absolute;
+  position: fixed;
   z-index: -1;
   width: 22rem;
   height: 22rem;
@@ -464,9 +468,11 @@ body {
 
 .love-page-card-track {
   display: flex;
-  gap: 1.25rem;
+  width: 100%;
+  max-width: 100%;
+  gap: clamp(0.75rem, 3vw, 1.25rem);
   overflow-x: auto;
-  padding: 1rem 1.25rem 1.5rem;
+  padding: 1rem clamp(0.5rem, 3vw, 1rem) 1.5rem;
   cursor: grab;
   scrollbar-width: none;
   scroll-behavior: smooth;
@@ -488,15 +494,15 @@ body {
 .love-page-card {
   position: relative;
   display: flex;
-  flex: 0 0 min(82vw, 20rem);
-  min-height: 18rem;
+  flex: 0 0 min(86vw, 22rem);
+  height: clamp(23rem, 68svh, 38rem);
+  min-height: 22rem;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.19);
   border-radius: 1.75rem;
-  padding: 1.75rem;
+  padding: clamp(1rem, 4vw, 1.75rem);
   background:
     radial-gradient(circle at 85% 10%, rgba(251, 207, 232, 0.17), transparent 34%),
     linear-gradient(145deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.055));
@@ -535,6 +541,44 @@ body {
   font-size: 0.72rem;
   font-weight: 700;
   letter-spacing: 0.2em;
+}
+
+.love-page-card-copy {
+  width: 100%;
+  flex: 1;
+  min-height: 0;
+  margin-top: 1rem;
+  padding: 0 0.25rem 0.5rem 0;
+  overflow-y: auto;
+  color: rgba(255, 255, 255, 0.88);
+  font-size: clamp(0.9rem, 2vw, 1rem);
+  line-height: 1.7;
+  text-align: left;
+  touch-action: pan-y;
+  user-select: text;
+  scrollbar-color: rgba(251, 207, 232, 0.5) transparent;
+  scrollbar-width: thin;
+}
+
+.love-page-card-copy p + p {
+  margin-top: 1rem;
+}
+
+@media (max-width: 639px) {
+  .love-page-surprise {
+    align-items: flex-start;
+  }
+
+  .love-page-surprise > section {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .love-page-card {
+    flex-basis: min(86vw, 22rem);
+    height: min(68svh, 34rem);
+    min-height: 22rem;
+  }
 }
 
 .love-page-card-icon {
